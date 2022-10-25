@@ -91,40 +91,45 @@ console.log(mid, mkey)
   const makePayment = () => {
     setLoading(true);
     var config = {
-      root: "",
-      style: {
-        bodyBackgroundColor: "#fafafb",
-        bodyColor: "",
-        themeBackgroundColor: "#0FB8C9",
-        themeColor: "#ffffff",
-        headerBackgroundColor: "#284055",
-        headerColor: "#ffffff",
-        errorColor: "",
-        successColor: "",
-        card: {
-          padding: "",
-          backgroundColor: "",
-        },
-      },
-      data: {
-        orderId: paymentData.order,
-        token: paymentData.token,
-        tokenType: "TXN_TOKEN",
-        amount: paymentData.amount /* update amount */,
-      },
-      payMode: {
-        labels: {},
-        filter: {
-          exclude: [],
-        },
-        order: ["CC", "DC", "NB", "UPI", "PPBL", "PPI", "BALANCE"],
-      },
-      website: "WEBSTAGING",
-      flow: "DEFAULT",
-      merchant: {
-        mid: paymentData.mid,
-        redirect: false,
-      },
+        root:"",
+           data:{
+              orderId:paymentData.order,
+              amount:paymentData.amount, // total price
+              token:paymentData.token,
+              tokenType:"TXN_TOKEN",
+            userDetail:{
+                 mobileNumber:"",
+                name:""
+              }
+           },
+           merchant:{
+              mid:paymentData.mid,
+              name:"Nitin Khan D'souza",
+              logo:"",
+              redirect:true,
+              callbackUrl:"",
+              hidePaytmBranding:false
+           },
+           "mapClientMessage":{
+         
+           },
+           "labels":{
+         
+           },
+           payMode:{
+              labels:{
+         
+              },
+              filter:[
+         
+              ],
+              order:[
+                 "LOGIN",
+                 "CARD",
+                 "NB",
+                 "UPI"
+              ]
+           },
       handler: {
         transactionStatus: function transactionStatus(paymentStatus) {
           console.log("paymentStatus => ", paymentStatus);
